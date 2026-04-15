@@ -1,0 +1,28 @@
+# Research and planning documents (not part of the deliverables)
+_research/
+
+# Dataset (distributed separately by OpenClassrooms)
+data/
+
+# Jupyter
+.ipynb_checkpoints/
+.virtual_documents/
+*.pyc
+__pycache__/
+
+# Anaconda
+anaconda_projects/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Environment
+.env
+venv/
+.venv/
