@@ -33,6 +33,28 @@ Images IRM → ResNet-50 (pré-entraîné) → Embeddings 2048-dim
         Label Propagation → Pseudo-Labeling → Fine-tuning CNN → Évaluation
 ```
 
+## Analyse non supervisée
+
+Visualisation t-SNE des embeddings ResNet-50. Les classes Normal (bleu) et Cancer (rouge) sont entièrement mélangées : les features ImageNet ne capturent pas les différences pathologiques, elles capturent des propriétés globales (luminosité, texture, contours).
+
+![t-SNE des embeddings](docs/images/01_tsne_labels.png)
+
+Le clustering K-Means confirme ce constat (ARI ≈ 0) : les clusters détectés ne correspondent pas aux classes. C'est un résultat négatif informatif qui motive le besoin d'un signal supervisé.
+
+## Comparaison CNN : supervisé vs semi-supervisé
+
+Le pré-entraînement du CNN sur 1 406 images pseudo-annotées améliore nettement la généralisation lors du fine-tuning sur les 56 images annotées :
+
+![Courbes d'apprentissage CNN](docs/images/03_cnn_learning_curves.png)
+
+Matrices de confusion des trois meilleurs modèles sur le jeu de test (30 images) :
+
+![Matrices de confusion](docs/images/04_confusion_matrices.png)
+
+Courbes ROC — tous les modèles comparés :
+
+![Courbes ROC](docs/images/05_roc_curves.png)
+
 ## Résultats clés
 
 | Modèle | Accuracy | F1 (macro) | Recall Cancer |
@@ -69,6 +91,10 @@ jupyter lab
 ```
 
 Les notebooks s'exécutent dans l'ordre : Notebook 1 produit les embeddings et weak labels utilisés par Notebook 2.
+
+## Licence
+
+MIT — voir [LICENSE](LICENSE).
 
 ## Auteur
 
